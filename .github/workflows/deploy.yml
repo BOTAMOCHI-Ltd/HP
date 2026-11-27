@@ -24,20 +24,11 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - name: Decide base path
-        id: base
-        run: |
-          # public/CNAME（独自ドメイン）があればルート、なければ /<リポジトリ名>/
-          if [ -f public/CNAME ]; then
-            echo "path=/" >> "$GITHUB_OUTPUT"
-          elif [ "${{ github.event.repository.name }}" = "${{ github.repository_owner }}.github.io" ]; then
-            echo "path=/" >> "$GITHUB_OUTPUT"
-          else
-            echo "path=/${{ github.event.repository.name }}/" >> "$GITHUB_OUTPUT"
-          fi
+      - uses: actions/configure-pages@v5
+        id: pages
       - run: npm run build
         env:
-          BASE_PATH: ${{ steps.base.outputs.path }}
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

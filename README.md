@@ -19,8 +19,8 @@ npm run dev
 
 ### 独自ドメインを使う場合
 
-`public/CNAME` にドメイン名（例: `botamochi.co.jp`）を1行で書いて push し、
-Settings → Pages の Custom domain に同じドメインを設定してください。
+Settings → Pages の Custom domain にドメインを設定し、DNS を GitHub Pages に向けてください。
+設定を変更したら、Actions の公開ワークフローを実行してください。ビルド時のベースパスは Pages 設定から取得します。
 
 ## 構成メモ
 
@@ -28,4 +28,4 @@ Settings → Pages の Custom domain に同じドメインを設定してくだ�
 - 画像: `public/images/`（Readdy のサーバーから取得してリポジトリ内に保存）
 - ページを追加したら `scripts/postbuild.mjs` の `routes` にもパスを追加してください
   （GitHub Pages で `/xxx` に直接アクセスしたときに表示するため）
-- お問い合わせ・申込フォームは Supabase / Readdy のAPIに送信しています（`.env` 参照）
+- お問い合わせフォームは Readdy に送信します。会員登録ページには問い合わせ先のメールアドレスを掲載しています。
