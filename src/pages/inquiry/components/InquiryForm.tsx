@@ -1,10 +1,4 @@
 import { useState, useRef } from 'react';
-import { createClient } from '@supabase/supabase-js';
-
-const supabase = createClient(
-  import.meta.env.VITE_PUBLIC_SUPABASE_URL,
-  import.meta.env.VITE_PUBLIC_SUPABASE_ANON_KEY
-);
 
 const DEPARTMENTS = [
   '経営・役員',
@@ -94,26 +88,13 @@ export default function InquiryForm() {
 
     try {
       // Readdy フォームへ送信
-      await fetch('https://readdy.ai/api/form/d7m43ao2li4t868hjd0g', {
+      const response = await fetch('https://readdy.ai/api/form/d7m43ao2li4t868hjd0g', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: body.toString(),
       });
 
-      // Resend でメール通知送信
-      await supabase.functions.invoke('send-inquiry-email', {
-        body: {
-          lastName: form.lastName,
-          firstName: form.firstName,
-          company: form.company,
-          email: form.email,
-          phone: form.phone,
-          employees: form.employees,
-          department: form.department,
-          position: form.position,
-          message: form.message,
-        },
-      });
+      if (!response.ok) throw new Error("Inquiry submission failed");
 
       setSubmitted(true);
     } catch {
@@ -131,7 +112,6 @@ export default function InquiryForm() {
         </div>
         <h2 className="text-xl font-semibold text-gray-900 mb-3">お問い合わせを受け付けました</h2>
         <p className="text-sm text-gray-500 leading-relaxed">
-          ご入力いただいたメールアドレス宛に確認メールをお送りしました。<br />
           担当者より2〜3営業日以内にご連絡いたします。
         </p>
       </div>

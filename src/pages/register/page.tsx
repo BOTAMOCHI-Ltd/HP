@@ -1,5 +1,3 @@
-import RegisterForm from './components/RegisterForm';
-
 export default function RegisterPage() {
   return (
     <div className="min-h-screen bg-[#fafaf9]">
@@ -21,11 +19,11 @@ export default function RegisterPage() {
             会員登録
           </h1>
           <p className="text-sm text-gray-500">
-            以下の項目をご入力の上、送信してください。
+            会員登録をご希望の方は、メールでお問い合わせください。
           </p>
         </div>
 
-        <RegisterForm />
+        <div className="text-center"><a className="font-semibold text-gray-900 underline" href="mailto:support@botamochi.co.jp">support@botamochi.co.jp</a></div>
       </main>
 
       {/* Footer */}

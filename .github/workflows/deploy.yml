@@ -38,8 +38,6 @@ jobs:
       - run: npm run build
         env:
           BASE_PATH: ${{ steps.base.outputs.path }}
-          VITE_PUBLIC_SUPABASE_URL: ${{ secrets.VITE_PUBLIC_SUPABASE_URL }}
-          VITE_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.VITE_PUBLIC_SUPABASE_ANON_KEY }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

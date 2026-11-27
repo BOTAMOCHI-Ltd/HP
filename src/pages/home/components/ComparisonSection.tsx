@@ -59,8 +59,7 @@ export default function ComparisonSection() {
               <tr>
                 {/* 比較項目ヘッダー */}
                 <th
-                  className="text-left text-xs font-semibold text-white px-3 md:px-5 py-2 md:py-3 rounded-tl-xl" style={{ backgroundColor: '#191970' }}
-                  style={{ width: '36%' }}
+                  className="text-left text-xs font-semibold text-white px-3 md:px-5 py-2 md:py-3 rounded-tl-xl" style={{ backgroundColor: '#191970', width: '36%' }}
                 >
                 </th>
                 {/* 何もしないヘッダー — 縮小・淡色 */}
